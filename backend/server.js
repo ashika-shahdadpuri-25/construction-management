@@ -6,7 +6,7 @@ const constructionRoutes = require("./routes/constructionRoutes");
 
 const app = express();
 
-app.use(cors({ origin: "https://frontend-production-b7c3.up.railway.app/" }));
+app.use(cors({ origin: "https://frontend-production-6c8e.up.railway.app/" }));
 
 app.use(express.json());
 
