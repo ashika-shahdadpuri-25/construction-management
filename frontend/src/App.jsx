@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "./App.css";
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 
 function App() {
   const [page, setPage] = useState("dashboard");
@@ -81,14 +83,15 @@ function App() {
         materialsRes,
         dashboardRes
       ] = await Promise.all([
-        axios.get("http://localhost:5000/api/clients"),
-        axios.get("http://localhost:5000/api/suppliers"),
-        axios.get("http://localhost:5000/api/managers"),
-        axios.get("http://localhost:5000/api/workers"),
-        axios.get("http://localhost:5000/api/projects"),
-        axios.get("http://localhost:5000/api/tasks"),
-        axios.get("http://localhost:5000/api/materials"),
-        axios.get("http://localhost:5000/api/dashboard")
+axios.get(`${API_URL}/api/clients`),
+axios.get(`${API_URL}/api/suppliers`),
+axios.get(`${API_URL}/api/managers`),
+axios.get(`${API_URL}/api/workers`),
+axios.get(`${API_URL}/api/projects`),
+axios.get(`${API_URL}/api/tasks`),
+axios.get(`${API_URL}/api/materials`),
+axios.get(`${API_URL}/api/dashboard`)
+
       ]);
 
       setClients(clientsRes.data);
@@ -141,13 +144,13 @@ function App() {
 
       if (editingProject) {
         await axios.put(
-          `http://localhost:5000/api/projects/${editingProject.projectId}`,
+          `http://${API_URL}/api/projects/${editingProject.projectId}`,
           data
         );
         alert("Project updated successfully!");
       } else {
         await axios.post(
-          "http://localhost:5000/api/projects",
+          `http://${API_URL}/api/projects`,
           data
         );
         alert("Project added successfully!");
@@ -186,7 +189,7 @@ function App() {
 
     try {
       await axios.delete(
-        `http://localhost:5000/api/projects/${id}`
+        `http://${API_URL}/api/projects/${id}`
       );
 
       alert("Project deleted successfully!");
@@ -216,13 +219,13 @@ function App() {
 
       if (editingClient) {
         await axios.put(
-          `http://localhost:5000/api/clients/${editingClient.clientId}`,
+          `http://${API_URL}/api/clients/${editingClient.clientId}`,
           data
         );
         alert("Client updated successfully!");
       } else {
         await axios.post(
-          "http://localhost:5000/api/clients",
+          `http://${API_URL}/api/clients`,
           data
         );
         alert("Client added successfully!");
@@ -259,7 +262,7 @@ function App() {
 
     try {
       await axios.delete(
-        `http://localhost:5000/api/clients/${id}`
+        `http://${API_URL}/api/clients/${id}`
       );
 
       alert("Client deleted successfully!");
@@ -296,13 +299,13 @@ function App() {
 
       if (editingTask) {
         await axios.put(
-          `http://localhost:5000/api/tasks/${editingTask.taskId}`,
+          `http://${API_URL}/api/tasks/${editingTask.taskId}`,
           data
         );
         alert("Task updated successfully!");
       } else {
         await axios.post(
-          "http://localhost:5000/api/tasks",
+          `http://${API_URL}/api/tasks`,
           data
         );
         alert("Task added successfully!");
@@ -341,7 +344,7 @@ function App() {
 
     try {
       await axios.delete(
-        `http://localhost:5000/api/tasks/${id}`
+        `http://${API_URL}/api/tasks/${id}`
       );
 
       alert("Task deleted successfully!");
@@ -364,7 +367,7 @@ function App() {
 
     try {
       await axios.post(
-        "http://localhost:5000/api/assigns",
+        `http://${API_URL}/api/assigns`,
         {
           managerId: Number(assignManagerId),
           workerId: Number(assignWorkerId)
@@ -397,7 +400,7 @@ function App() {
 
     try {
       await axios.delete(
-        `http://localhost:5000/api/assigns/${managerId}/${workerId}`
+        `http://${API_URL}/api/assigns/${managerId}/${workerId}`
       );
 
       alert("Assignment removed successfully!");
@@ -420,7 +423,7 @@ function App() {
 
     try {
       await axios.post(
-        "http://localhost:5000/api/requires",
+        `http://${API_URL}/api/requires`,
         {
           taskId: Number(requireTaskId),
           materialId: Number(requireMaterialId)
@@ -456,7 +459,7 @@ function App() {
 
     try {
       await axios.delete(
-        `http://localhost:5000/api/requires/${taskId}/${materialId}`
+        `http://${API_URL}/api/requires/${taskId}/${materialId}`
       );
 
       alert("Material removed from task successfully!");
@@ -485,13 +488,13 @@ function App() {
 
       if (editingManagerId) {
         await axios.put(
-          `http://localhost:5000/api/managers/${editingManagerId}`,
+          `http://${API_URL}/api/managers/${editingManagerId}`,
           data
         );
         alert("Manager updated successfully!");
       } else {
         await axios.post(
-          "http://localhost:5000/api/managers",
+          `http://${API_URL}/api/managers`,
           data
         );
         alert("Manager added successfully!");
@@ -528,7 +531,7 @@ function App() {
 
     try {
       await axios.delete(
-        `http://localhost:5000/api/managers/${id}`
+        `http://${API_URL}/api/managers/${id}`
       );
 
       alert("Manager deleted successfully!");
@@ -564,13 +567,13 @@ function App() {
 
       if (editingWorkerId) {
         await axios.put(
-          `http://localhost:5000/api/workers/${editingWorkerId}`,
+          `http://${API_URL}/api/workers/${editingWorkerId}`,
           data
         );
         alert("Worker updated successfully!");
       } else {
         await axios.post(
-          "http://localhost:5000/api/workers",
+          `http://${API_URL}/api/workers`,
           data
         );
         alert("Worker added successfully!");
@@ -605,7 +608,7 @@ function App() {
 
     try {
       await axios.delete(
-        `http://localhost:5000/api/workers/${id}`
+        `http://${API_URL}/api/workers/${id}`
       );
 
       alert("Worker deleted successfully!");
@@ -646,13 +649,13 @@ function App() {
 
       if (editingMaterialId) {
         await axios.put(
-          `http://localhost:5000/api/materials/${editingMaterialId}`,
+          `http://${API_URL}/api/materials/${editingMaterialId}`,
           data
         );
         alert("Material updated successfully!");
       } else {
         await axios.post(
-          "http://localhost:5000/api/materials",
+          `http://${API_URL}/api/materials`,
           data
         );
         alert("Material added successfully!");
@@ -689,7 +692,7 @@ function App() {
 
     try {
       await axios.delete(
-        `http://localhost:5000/api/materials/${id}`
+        `http://${API_URL}/api/materials/${id}`
       );
 
       alert("Material deleted successfully!");
@@ -720,13 +723,13 @@ function App() {
 
       if (editingSupplierId) {
         await axios.put(
-          `http://localhost:5000/api/suppliers/${editingSupplierId}`,
+          `http://${API_URL}/api/suppliers/${editingSupplierId}`,
           data
         );
         alert("Supplier updated successfully!");
       } else {
         await axios.post(
-          "http://localhost:5000/api/suppliers",
+          `http://${API_URL}/api/suppliers`,
           data
         );
         alert("Supplier added successfully!");
@@ -761,7 +764,7 @@ function App() {
 
     try {
       await axios.delete(
-        `http://localhost:5000/api/suppliers/${id}`
+        `http://${API_URL}/api/suppliers/${id}`
       );
 
       alert("Supplier deleted successfully!");
