@@ -1,0 +1,103 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Client {
+  clientId Int @id @default(autoincrement())
+  name String
+  phone String?
+  email String?
+
+  projects Project[]
+}
+
+model Supplier {
+  supplierId Int @id @default(autoincrement())
+  supplierName String
+  phone String?
+
+  materials Material[]
+}
+
+model Manager {
+  managerId Int @id @default(autoincrement())
+  name String
+  speciality String?
+  email String?
+
+  projects Project[]
+  tasks Task[]
+  assignments Assigns[]
+}
+
+model Worker {
+  workerId Int @id @default(autoincrement())
+  name String
+  hourlyRate Float
+
+  assignments Assigns[]
+}
+
+model Project {
+  projectId Int @id @default(autoincrement())
+  projectName String
+  totalBudget Float
+
+  clientId Int
+  client Client @relation(fields: [clientId], references: [clientId])
+
+  managerId Int
+  manager Manager @relation(fields: [managerId], references: [managerId])
+
+  tasks Task[]
+}
+
+model Task {
+  taskId Int @id @default(autoincrement())
+  taskName String
+  status String
+
+  projectId Int
+  project Project @relation(fields: [projectId], references: [projectId])
+
+  managerId Int
+  manager Manager @relation(fields: [managerId], references: [managerId])
+
+  materials Requires[]
+}
+
+model Material {
+  materialId Int @id @default(autoincrement())
+  materialName String
+  unitCost Float
+
+  supplierId Int
+  supplier Supplier @relation(fields: [supplierId], references: [supplierId])
+
+  tasks Requires[]
+}
+
+model Assigns {
+  managerId Int
+  workerId Int
+
+  manager Manager @relation(fields: [managerId], references: [managerId])
+  worker Worker @relation(fields: [workerId], references: [workerId])
+
+  @@id([managerId, workerId])
+}
+
+model Requires {
+  taskId Int
+  materialId Int
+
+  task Task @relation(fields: [taskId], references: [taskId])
+  material Material @relation(fields: [materialId], references: [materialId])
+
+  @@id([taskId, materialId])
+}
