@@ -21,7 +21,7 @@ Email VARCHAR(100)
 -- 4. Worker Table
 CREATE TABLE Worker (
 WorkerID INT PRIMARY KEY,
-Name VARCHAR(100) NOT NULL
+Name VARCHAR(100) NOT NULL,
 HourlyRate DECIMAL(10, 2)
 );
 -- 5. Project Table (Linked to Client and supervised by Manager)
@@ -64,7 +64,7 @@ FOREIGN KEY (WorkerID) REFERENCES Worker(WorkerID)
 CREATE TABLE Requires (
 Task_id INT,
 MaterialID INT,
-PRIMARY KEY (Task_id, MaterialID)
+PRIMARY KEY (Task_id, MaterialID),
 FOREIGN KEY (Task_id) REFERENCES Task(Task_id),
 FOREIGN KEY (MaterialID) REFERENCES Material(MaterialID)
 );
