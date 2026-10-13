@@ -144,13 +144,13 @@ axios.get(`${API_URL}/api/dashboard`)
 
       if (editingProject) {
         await axios.put(
-          `http://${API_URL}/api/projects/${editingProject.projectId}`,
+          `${API_URL}/api/projects/${editingProject.projectId}`,
           data
         );
         alert("Project updated successfully!");
       } else {
         await axios.post(
-          `http://${API_URL}/api/projects`,
+          `${API_URL}/api/projects`,
           data
         );
         alert("Project added successfully!");
@@ -189,7 +189,7 @@ axios.get(`${API_URL}/api/dashboard`)
 
     try {
       await axios.delete(
-        `http://${API_URL}/api/projects/${id}`
+        `${API_URL}/api/projects/${id}`
       );
 
       alert("Project deleted successfully!");
@@ -219,13 +219,13 @@ axios.get(`${API_URL}/api/dashboard`)
 
       if (editingClient) {
         await axios.put(
-          `http://${API_URL}/api/clients/${editingClient.clientId}`,
+          `${API_URL}/api/clients/${editingClient.clientId}`,
           data
         );
         alert("Client updated successfully!");
       } else {
         await axios.post(
-          `http://${API_URL}/api/clients`,
+          `${API_URL}/api/clients`,
           data
         );
         alert("Client added successfully!");
@@ -262,7 +262,7 @@ axios.get(`${API_URL}/api/dashboard`)
 
     try {
       await axios.delete(
-        `http://${API_URL}/api/clients/${id}`
+        `${API_URL}/api/clients/${id}`
       );
 
       alert("Client deleted successfully!");
@@ -299,13 +299,13 @@ axios.get(`${API_URL}/api/dashboard`)
 
       if (editingTask) {
         await axios.put(
-          `http://${API_URL}/api/tasks/${editingTask.taskId}`,
+          `${API_URL}/api/tasks/${editingTask.taskId}`,
           data
         );
         alert("Task updated successfully!");
       } else {
         await axios.post(
-          `http://${API_URL}/api/tasks`,
+          `${API_URL}/api/tasks`,
           data
         );
         alert("Task added successfully!");
@@ -344,7 +344,7 @@ axios.get(`${API_URL}/api/dashboard`)
 
     try {
       await axios.delete(
-        `http://${API_URL}/api/tasks/${id}`
+        `${API_URL}/api/tasks/${id}`
       );
 
       alert("Task deleted successfully!");
@@ -367,7 +367,7 @@ axios.get(`${API_URL}/api/dashboard`)
 
     try {
       await axios.post(
-        `http://${API_URL}/api/assigns`,
+        `${API_URL}/api/assigns`,
         {
           managerId: Number(assignManagerId),
           workerId: Number(assignWorkerId)
@@ -400,7 +400,7 @@ axios.get(`${API_URL}/api/dashboard`)
 
     try {
       await axios.delete(
-        `http://${API_URL}/api/assigns/${managerId}/${workerId}`
+        `${API_URL}/api/assigns/${managerId}/${workerId}`
       );
 
       alert("Assignment removed successfully!");
@@ -423,7 +423,7 @@ axios.get(`${API_URL}/api/dashboard`)
 
     try {
       await axios.post(
-        `http://${API_URL}/api/requires`,
+        `${API_URL}/api/requires`,
         {
           taskId: Number(requireTaskId),
           materialId: Number(requireMaterialId)
@@ -459,7 +459,7 @@ axios.get(`${API_URL}/api/dashboard`)
 
     try {
       await axios.delete(
-        `http://${API_URL}/api/requires/${taskId}/${materialId}`
+        `${API_URL}/api/requires/${taskId}/${materialId}`
       );
 
       alert("Material removed from task successfully!");
@@ -488,13 +488,13 @@ axios.get(`${API_URL}/api/dashboard`)
 
       if (editingManagerId) {
         await axios.put(
-          `http://${API_URL}/api/managers/${editingManagerId}`,
+          `${API_URL}/api/managers/${editingManagerId}`,
           data
         );
         alert("Manager updated successfully!");
       } else {
         await axios.post(
-          `http://${API_URL}/api/managers`,
+          `${API_URL}/api/managers`,
           data
         );
         alert("Manager added successfully!");
@@ -531,7 +531,7 @@ axios.get(`${API_URL}/api/dashboard`)
 
     try {
       await axios.delete(
-        `http://${API_URL}/api/managers/${id}`
+        `${API_URL}/api/managers/${id}`
       );
 
       alert("Manager deleted successfully!");
@@ -567,13 +567,13 @@ axios.get(`${API_URL}/api/dashboard`)
 
       if (editingWorkerId) {
         await axios.put(
-          `http://${API_URL}/api/workers/${editingWorkerId}`,
+          `${API_URL}/api/workers/${editingWorkerId}`,
           data
         );
         alert("Worker updated successfully!");
       } else {
         await axios.post(
-          `http://${API_URL}/api/workers`,
+          `${API_URL}/api/workers`,
           data
         );
         alert("Worker added successfully!");
@@ -608,7 +608,7 @@ axios.get(`${API_URL}/api/dashboard`)
 
     try {
       await axios.delete(
-        `http://${API_URL}/api/workers/${id}`
+        `${API_URL}/api/workers/${id}`
       );
 
       alert("Worker deleted successfully!");
@@ -649,13 +649,13 @@ axios.get(`${API_URL}/api/dashboard`)
 
       if (editingMaterialId) {
         await axios.put(
-          `http://${API_URL}/api/materials/${editingMaterialId}`,
+          `${API_URL}/api/materials/${editingMaterialId}`,
           data
         );
         alert("Material updated successfully!");
       } else {
         await axios.post(
-          `http://${API_URL}/api/materials`,
+          `${API_URL}/api/materials`,
           data
         );
         alert("Material added successfully!");
@@ -692,7 +692,7 @@ axios.get(`${API_URL}/api/dashboard`)
 
     try {
       await axios.delete(
-        `http://${API_URL}/api/materials/${id}`
+        `${API_URL}/api/materials/${id}`
       );
 
       alert("Material deleted successfully!");
@@ -723,13 +723,13 @@ axios.get(`${API_URL}/api/dashboard`)
 
       if (editingSupplierId) {
         await axios.put(
-          `http://${API_URL}/api/suppliers/${editingSupplierId}`,
+          `${API_URL}/api/suppliers/${editingSupplierId}`,
           data
         );
         alert("Supplier updated successfully!");
       } else {
         await axios.post(
-          `http://${API_URL}/api/suppliers`,
+          `${API_URL}/api/suppliers`,
           data
         );
         alert("Supplier added successfully!");
@@ -764,7 +764,7 @@ axios.get(`${API_URL}/api/dashboard`)
 
     try {
       await axios.delete(
-        `http://${API_URL}/api/suppliers/${id}`
+        `${API_URL}/api/suppliers/${id}`
       );
 
       alert("Supplier deleted successfully!");
