@@ -6,7 +6,13 @@ const constructionRoutes = require("./routes/constructionRoutes");
 
 const app = express();
 
-app.use(cors({ origin: "https://frontend-production-6c8e.up.railway.app" }));
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://frontend-production-6c8e.up.railway.app",
+  process.env.FRONTEND_URL,
+].filter(Boolean);
+
+app.use(cors({ origin: allowedOrigins }));
 
 app.use(express.json());
 
